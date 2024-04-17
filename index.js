@@ -9,7 +9,7 @@ const { SemanticResourceAttributes } = require('@opentelemetry/semantic-conventi
 
 function initialize(config) {
   const exporterOptions = {
-    url: config.url || "http://10.205.6.198:4318/v1/traces"
+    url: config.url
   }
 
   const traceExporter = new OTLPTraceExporter(exporterOptions);
@@ -17,7 +17,7 @@ function initialize(config) {
     traceExporter,
     instrumentations: [getNodeAutoInstrumentations()],
     resource: new Resource({
-      [SemanticResourceAttributes.SERVICE_NAME]: config.service || 'recruiter_api_prod_1'
+      [SemanticResourceAttributes.SERVICE_NAME]: config.service
     })
   });
 
